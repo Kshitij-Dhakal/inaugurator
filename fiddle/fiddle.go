@@ -1,11 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/Kshitij-Dhakal/inaugurator/common"
+)
 
 func main() {
-	x := toSnakeCase("HelloWorld")
-	fmt.Println(x)
-	fmt.Println(len(x))
+	fmt.Println(common.ToDesiredCase("__pc__helloWorld"))
+	fmt.Println(common.ToDesiredCase("__cc__helloWorld"))
+	fmt.Println(common.ToDesiredCase("__sc__helloWorld"))
+	fmt.Println(common.ToDesiredCase("__helloWorld"))
+	fmt.Println(common.ToDesiredCase("pc__helloWorld"))
+	fmt.Println(common.ToDesiredCase("__pchelloWorld"))
+	fmt.Println(common.ToDesiredCase("____helloWorld"))
 }
 
 //function to convert camelCase to snake_case
@@ -24,18 +31,3 @@ func toSnakeCase(str string) []string {
 	return result
 }
 
-//make only first letter of string lowercase
-func toLowerCase(str string) string {
-	if(str == ""){
-		return ""
-	}
-	var result string
-	for _, v := range str {
-		if v >= 65 && v <= 90 {
-			result += string(v + 32)
-		} else {
-			result += string(v)
-		}
-	}
-	return result
-}
