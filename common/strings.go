@@ -38,23 +38,23 @@ func MakeFirstLetterUpperCase(str string) string {
 	return result
 }
 
-func ToDesiredCase(str string) (string, error)  {
-	if(str == ""){
+func ToDesiredCase(str string) (string, error) {
+	if str == "" {
 		return "", errors.New("String is empty")
 	}
-	r,_ := regexp.Compile("__[a-z]{2}__\\w+")
+	r, _ := regexp.Compile("__[a-z]{2}__\\w+")
 	if !r.MatchString(str) {
 		return "", errors.New("Invalid string format. Proper string format : __[a-z]{2}__[a-zA-Z0-9]+")
 	}
 	split := Split(str, '_')
 	dc := split[0]
 	s := split[1]
-    
+
 	var result []string
 	var joinWith string
 	split = splitString(s)
 	for _, v := range split {
-		if dc == "sc" {	//snake case
+		if dc == "sc" { //snake case
 			result = append(result, strings.ToLower(v))
 			joinWith = "_"
 		} else if dc == "pc" { //pascal case
@@ -74,7 +74,7 @@ func ToDesiredCase(str string) (string, error)  {
 	return finalString, nil
 }
 
-func splitString(str string) []string   {
+func splitString(str string) []string {
 	if strings.Contains(str, "-") {
 		return strings.Split(str, "-")
 	}
@@ -84,11 +84,14 @@ func splitString(str string) []string   {
 	if strings.Contains(str, ".") {
 		return strings.Split(str, ".")
 	}
+	if strings.Contains(str, " ") {
+		return strings.Split(str, " ")
+	}
 	return splitCamelCaseString(str)
 }
 
 func splitCamelCaseString(str string) []string {
-	if(str == ""){
+	if str == "" {
 		return []string{}
 	}
 	var result []string
@@ -105,7 +108,7 @@ func splitCamelCaseString(str string) []string {
 	return result
 }
 
-func Split(s string, r rune) []string  {
+func Split(s string, r rune) []string {
 	return strings.FieldsFunc(s, func(v rune) bool {
 		return v == r
 	})

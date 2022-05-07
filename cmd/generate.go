@@ -8,7 +8,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Kshitij-Dhakal/inaugurator/common"
+	"github.com/Kshitij-Dhakal/inaugurator/facade"
+	"github.com/Kshitij-Dhakal/inaugurator/service"
 	"github.com/spf13/cobra"
 )
 
@@ -23,16 +24,17 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		f, err := common.ReadFile(_f)
+		codeGeneratorService := &service.CodeGeneratorImpl{}
+		codeGeneratorFacade := &facade.CodeGeneratorImpl{
+			Service: codeGeneratorService,
+		}
+		err := codeGeneratorFacade.GenerateCode(file, args...)
 		if err != nil {
 			fmt.Println(err)
 			os.Exit(1)
 		}
-
 	},
 }
-
-var _f string
 
 func init() {
 	generateCmd.Flags().StringVarP(&file, "file", "f", "", "file to read")
