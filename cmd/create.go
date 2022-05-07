@@ -14,8 +14,10 @@ import (
 // createCmd represents the create command
 var createCmd = &cobra.Command{
 	Use:   "create",
-	Short: "Create command",
-	Long: `Create command`,
+	Short: "Create new boilderplate.",
+	Long: `Provide a name for the boilerplate you want to create. Add file for the boilderplate with -f flag.
+	
+	Example usage : inaugurator create server -f server.go`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if(file == ""){
 			fmt.Println("Please provide a file")

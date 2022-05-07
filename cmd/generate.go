@@ -1,5 +1,5 @@
 /*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
+Copyright © 2022 Kshitij Dhakal dhakalkshitij@gmail.com
 
 */
 package cmd
@@ -16,13 +16,8 @@ import (
 // generateCmd represents the generate command
 var generateCmd = &cobra.Command{
 	Use:   "generate",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Generate code using the boilderplate you just created.",
+	Long: `Generate code using the boilderplate you just created.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		codeGeneratorService := &service.CodeGeneratorImpl{}
 		codeGeneratorFacade := &facade.CodeGeneratorImpl{
