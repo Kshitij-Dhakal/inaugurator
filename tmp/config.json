@@ -1,10 +1,20 @@
-{
-    "component": {
-        "alias" : "c",
-        "template" : "/components/__pc__nameComponent.ts"
-    },
-    "service": {
-        "alias" : "s",
-        "template" : "/services/__pc__nameService.ts"
+[
+    {
+        "command": "generate",
+        "alias": "g",
+        "subcommand": [
+            {
+                "commant": "component",
+                "alias": "c",
+                "template": "ComponentTemplate.ts",
+                "file": "__ss__name/__pc__nameComponent.ts"
+            },
+            {
+                "command": "service",
+                "alias": "s",
+                "template": "ServiceTemplate.ts",
+                "file": "__ss__name/__pc__nameService.ts"
+            }
+        ]
     }
-}
+]

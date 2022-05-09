@@ -5,8 +5,7 @@ Copyright © 2022 Kshitij Dhakal dhakalkshitij@gmail.com
 package cmd
 
 import (
-	"github.com/Kshitij-Dhakal/inaugurator/facade"
-	"github.com/Kshitij-Dhakal/inaugurator/service"
+	"github.com/Kshitij-Dhakal/inaugurator/pkg/create"
 	"github.com/spf13/cobra"
 )
 
@@ -18,11 +17,11 @@ var createCmd = &cobra.Command{
 	
 	Example usage : inaugurator create server -f server.go`,
 	Run: func(cmd *cobra.Command, args []string) {
-		s := &service.BoilderplaterCreatorImpl{}
-		f := &facade.BoilerplateCreatorImpl{
+		s := &create.BoilderplaterCreatorServiceImpl{}
+		f := &create.BoilerplateCreatorImpl{
 			Service: s,
 		}
-		f.CreateBoilerplate(args...)
+		f.CreateBoilerplate(file, args...)
 	},
 }
 
