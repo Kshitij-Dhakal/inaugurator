@@ -5,9 +5,8 @@ Copyright © 2022 Kshitij Dhakal dhakalkshitij@gmail.com
 package cmd
 
 import (
-	"fmt"
-	"os"
-
+	"github.com/Kshitij-Dhakal/inaugurator/facade"
+	"github.com/Kshitij-Dhakal/inaugurator/service"
 	"github.com/spf13/cobra"
 )
 
@@ -19,18 +18,11 @@ var createCmd = &cobra.Command{
 	
 	Example usage : inaugurator create server -f server.go`,
 	Run: func(cmd *cobra.Command, args []string) {
-		if(file == ""){
-			fmt.Println("Please provide a file")
-			os.Exit(1)
+		s := &service.BoilderplaterCreatorImpl{}
+		f := &facade.BoilerplateCreatorImpl{
+			Service: s,
 		}
-		fmt.Println("Creating boilerplate from File : ", file)
-		
-		dat, err := os.ReadFile(file)
-		if err!=nil {
-			fmt.Println(err)
-			return
-		}
-		fmt.Print(string(dat))
+		f.CreateBoilerplate(args...)
 	},
 }
 

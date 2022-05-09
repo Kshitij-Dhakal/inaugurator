@@ -7,10 +7,10 @@ type BoilerplateCreator interface {
 }
 
 type BoilerplateCreatorImpl struct {
-	createBoilderplateService service.CreateBoilerplateService;
+	Service service.BoilderplaterCreator
 }
 
-func (c BoilerplateCreatorImpl) CreateBoilerplate(file string) (string, error)  {
+func (c BoilerplateCreatorImpl) CreateBoilerplate(args ...string) (string, error) {
 	//TODO: validation logic here
-	return c.createBoilderplateService.CreateBoilerplate(file)
+	return c.Service.CreateBoilerplate(args[0])
 }
