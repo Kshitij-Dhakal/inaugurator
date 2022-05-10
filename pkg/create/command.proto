@@ -4,7 +4,7 @@ package tutorial;
 option go_package = "github.com/Kshitij-Dhakal/inaugurator/pkg/create";
 
 message Template {
-    string file = 1;
+    string out = 1;
     string template = 2;
 }
 

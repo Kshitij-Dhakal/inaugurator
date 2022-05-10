@@ -11,11 +11,11 @@
                     "templates": [
                         {
                             "template": "tmp/name.component.ts",
-                            "file": "__ss__name/__lkc__name.component.ts"
+                            "out": "__ss__name/__lkc__name.component.ts"
                         },
                         {
                             "template": "tmp/name.component.html",
-                            "file": "__ss__name/__lkc__name.component.ts"
+                            "out": "__ss__name/__lkc__name.component.ts"
                         }
                     ]
                 },
@@ -25,7 +25,7 @@
                     "templates": [
                         {
                             "template": "tmp/name.service.ts",
-                            "file": "__lkc__name.service.ts"
+                            "out": "__lkc__name.service.ts"
                         }
                     ]
                 }

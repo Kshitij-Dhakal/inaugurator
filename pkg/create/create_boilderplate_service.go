@@ -66,12 +66,13 @@ func updateCommand(command *Command, i int32) error {
 	if i > 2 {
 		return errors.New("max number of subcommands reached")
 	}
-	if command.GetTemplate() != "" {
-		template, err := common.ReadFile(command.GetTemplate())
-		if err != nil {
-			return err
-		}
-		command.Template = template
+	//TODO: template validation
+	if command.GetTemplates() != nil {
+		// template, err := common.ReadFile(command.GetTemplate())
+		// if err != nil {
+		// 	return err
+		// }
+		// command.Template = template
 	}
 	if command.GetSubcommands() != nil {
 		for _, v := range command.GetSubcommands() {

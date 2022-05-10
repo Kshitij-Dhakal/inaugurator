@@ -53,7 +53,8 @@ func validateCommand(command *Command) error {
 	if command.Command == "" {
 		return errors.New("command is required")
 	}
-	if command.Template == "" && command.Subcommands == nil {
+	//TODO: validate command
+	if command.Templates == nil && command.Subcommands == nil {
 		return errors.New("template or subcommands is required")
 	}
 	return nil
