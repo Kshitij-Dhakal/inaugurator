@@ -10,4 +10,5 @@ Allowed Case:
 * pc : PascalCase
 * cc : camelCase
 * ss : snake_case
+* lkc : lowercase-kebab-case
   

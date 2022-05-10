@@ -8,14 +8,26 @@
                 {
                     "command": "component",
                     "alias": "c",
-                    "template": "ComponentTemplate.ts",
-                    "file": "__ss__name/__pc__nameComponent.ts"
+                    "templates": [
+                        {
+                            "template": "tmp/name.component.ts",
+                            "file": "__ss__name/__lkc__name.component.ts"
+                        },
+                        {
+                            "template": "tmp/name.component.html",
+                            "file": "__ss__name/__lkc__name.component.ts"
+                        }
+                    ]
                 },
                 {
                     "command": "service",
                     "alias": "s",
-                    "template": "ServiceTemplate.ts",
-                    "file": "__pc__nameService.ts"
+                    "templates": [
+                        {
+                            "template": "tmp/name.service.ts",
+                            "file": "__lkc__name.service.ts"
+                        }
+                    ]
                 }
             ]
         }

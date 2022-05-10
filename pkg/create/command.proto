@@ -3,12 +3,16 @@ package tutorial;
 
 option go_package = "github.com/Kshitij-Dhakal/inaugurator/pkg/create";
 
+message Template {
+    string file = 1;
+    string template = 2;
+}
+
 message Command {
     string command = 1;
     string alias = 2;
-    string template = 3;
-    string file= 4;
-    repeated Command subcommands = 5;
+    repeated Template templates = 3;
+    repeated Command subcommands = 4;
 }
 
 message CommandList {
