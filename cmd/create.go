@@ -24,7 +24,7 @@ var createCmd = &cobra.Command{
 		f := &create.BoilerplateCreatorImpl{
 			Service: s,
 		}
-		_, err := f.CreateBoilerplate(file, args...)
+		err := f.CreateBoilerplate(file, args...)
 		if err != nil {
 			fmt.Println(err)
 			os.Exit(1)

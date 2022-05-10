@@ -15,7 +15,7 @@
                     "command": "service",
                     "alias": "s",
                     "template": "ServiceTemplate.ts",
-                    "file": "__ss__name/__pc__nameService.ts"
+                    "file": "__pc__nameService.ts"
                 }
             ]
         }

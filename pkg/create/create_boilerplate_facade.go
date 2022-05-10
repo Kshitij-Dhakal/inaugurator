@@ -8,40 +8,40 @@ import (
 )
 
 type BoilerplateCreator interface {
-	CreateBoilerplate(file string, args ...string) (string, error)
+	CreateBoilerplate(file string, args ...string) error
 }
 
 type BoilerplateCreatorImpl struct {
 	Service BoilderplaterCreatorService
 }
 
-func (c BoilerplateCreatorImpl) CreateBoilerplate(file string, args ...string) (string, error) {
+func (c BoilerplateCreatorImpl) CreateBoilerplate(file string, args ...string) error {
 	if file == "" {
-		return "", errors.New("file name is required")
+		return errors.New("file name is required")
 	}
 	data, err := common.ReadFile(file)
 	if err != nil {
-		return "", err
+		return err
 	}
 	var commandList CommandList
 	x := []byte(data)
 	err = json.Unmarshal(x, &commandList)
 	if err != nil {
-		return "", err
+		return err
 	}
 	if commandList.GetName() == "" {
-		return "", errors.New("command name is required")
+		return errors.New("command name is required")
 	}
 	for _, v := range commandList.Commands {
 		err = validateCommand(v)
 		if err != nil {
-			return "", err
+			return err
 		}
 		//only one layer of subcommands
 		for _, w := range v.Subcommands {
 			err = validateCommand(w)
 			if err != nil {
-				return "", err
+				return err
 			}
 		}
 	}
