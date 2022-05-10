@@ -1,20 +1,23 @@
-[
-    {
-        "command": "generate",
-        "alias": "g",
-        "subcommand": [
-            {
-                "commant": "component",
-                "alias": "c",
-                "template": "ComponentTemplate.ts",
-                "file": "__ss__name/__pc__nameComponent.ts"
-            },
-            {
-                "command": "service",
-                "alias": "s",
-                "template": "ServiceTemplate.ts",
-                "file": "__ss__name/__pc__nameService.ts"
-            }
-        ]
-    }
-]
+{
+    "name": "ng",
+    "commands": [
+        {
+            "command": "generate",
+            "alias": "g",
+            "subcommands": [
+                {
+                    "command": "component",
+                    "alias": "c",
+                    "template": "ComponentTemplate.ts",
+                    "file": "__ss__name/__pc__nameComponent.ts"
+                },
+                {
+                    "command": "service",
+                    "alias": "s",
+                    "template": "ServiceTemplate.ts",
+                    "file": "__ss__name/__pc__nameService.ts"
+                }
+            ]
+        }
+    ]
+}

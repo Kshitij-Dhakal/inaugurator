@@ -46,6 +46,6 @@ func (c CodeGeneratorImpl) GenerateCode(file string, name string) error {
 	var processed bytes.Buffer
 	err = template.Execute(&processed, name)
 	fullPath := strings.Join(split, "/")
-	fmt.Println("Generating file :",fullPath)
-	return common.WriteFile(fullPath, processed.String())
+	fmt.Println("Generating file :", fullPath)
+	return common.StoreString(fullPath, processed.String())
 }

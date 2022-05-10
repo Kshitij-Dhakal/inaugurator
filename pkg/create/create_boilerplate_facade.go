@@ -23,27 +23,33 @@ func (c BoilerplateCreatorImpl) CreateBoilerplate(file string, args ...string) (
 	if err != nil {
 		return "", err
 	}
-	var command *Command
-	err = json.Unmarshal([]byte(data), command)
+	var commandList CommandList
+	x := []byte(data)
+	err = json.Unmarshal(x, &commandList)
 	if err != nil {
 		return "", err
 	}
-	err = validateCommand(*command)
-	if err != nil {
-		return "", err
+	if commandList.GetName() == "" {
+		return "", errors.New("command name is required")
 	}
-	//only one layer of subcommands
-	for _, v := range command.Subcommands {
-		err = validateCommand(*v)
+	for _, v := range commandList.Commands {
+		err = validateCommand(v)
 		if err != nil {
 			return "", err
 		}
+		//only one layer of subcommands
+		for _, w := range v.Subcommands {
+			err = validateCommand(w)
+			if err != nil {
+				return "", err
+			}
+		}
 	}
-	return c.Service.CreateBoilerplate(file, command)
+
+	return c.Service.CreateBoilerplate(file, &commandList)
 }
 
-
-func validateCommand(command Command) error {
+func validateCommand(command *Command) error {
 	if command.Command == "" {
 		return errors.New("command is required")
 	}

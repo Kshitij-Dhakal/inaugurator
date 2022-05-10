@@ -1,0 +1,17 @@
+syntax = "proto3";
+package tutorial;
+
+option go_package = "github.com/Kshitij-Dhakal/inaugurator/pkg/create";
+
+message Command {
+    string command = 1;
+    string alias = 2;
+    string template = 3;
+    string file= 4;
+    repeated Command subcommands = 5;
+}
+
+message CommandList {
+    string name = 1;
+    repeated Command commands = 2;
+}

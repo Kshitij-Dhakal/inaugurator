@@ -7,7 +7,7 @@ import (
 
 func ReadFile(file string) (string, error) {
 	if file == "" {
-		return "", errors.New("Please provide a file")
+		return "", errors.New("please provide a file")
 	}
 
 	dat, err := os.ReadFile(file)
@@ -17,13 +17,13 @@ func ReadFile(file string) (string, error) {
 	return string(dat), nil
 }
 
-func WriteFile(file string, data string) error {
+func StoreString(file string, data string) error {
+	return StoreBytes(file, []byte(data))
+}
+
+func StoreBytes(file string, data []byte) error {
 	if file == "" {
-		return errors.New("Please provide a file")
+		return errors.New("please provide a file")
 	}
-	err := os.WriteFile(file, []byte(data), 0644)
-	if err != nil {
-		return err
-	}
-	return nil
+	return os.WriteFile(file, data, 0644)
 }

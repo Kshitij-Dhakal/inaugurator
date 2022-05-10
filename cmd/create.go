@@ -5,6 +5,9 @@ Copyright © 2022 Kshitij Dhakal dhakalkshitij@gmail.com
 package cmd
 
 import (
+	"fmt"
+	"os"
+
 	"github.com/Kshitij-Dhakal/inaugurator/pkg/create"
 	"github.com/spf13/cobra"
 )
@@ -21,7 +24,11 @@ var createCmd = &cobra.Command{
 		f := &create.BoilerplateCreatorImpl{
 			Service: s,
 		}
-		f.CreateBoilerplate(file, args...)
+		_, err := f.CreateBoilerplate(file, args...)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
 	},
 }
 
