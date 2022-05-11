@@ -6,7 +6,9 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 
+	"github.com/Kshitij-Dhakal/inaugurator/pkg/boilerplate"
 	"github.com/spf13/cobra"
 )
 
@@ -16,7 +18,15 @@ var listCmd = &cobra.Command{
 	Short: "List the boilerplates you have created.",
 	Long: `List the boilerplates you have created.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("list called")
+		s := &boilerplate.BoilerplateListerServiceImpl{}
+		f := &boilerplate.BoilerplateListerFacadeImpl{
+			Service: s,
+		}
+		err := f.ListBoilerplates()
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
 	},
 }
 

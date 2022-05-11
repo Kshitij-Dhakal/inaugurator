@@ -1,4 +1,4 @@
-package create
+package boilerplate
 
 import (
 	"encoding/json"
@@ -12,7 +12,7 @@ type BoilerplateCreator interface {
 }
 
 type BoilerplateCreatorImpl struct {
-	Service BoilderplaterCreatorService
+	Service BoilderplateCreatorService
 }
 
 func (c BoilerplateCreatorImpl) CreateBoilerplate(file string, args ...string) error {
@@ -50,11 +50,18 @@ func (c BoilerplateCreatorImpl) CreateBoilerplate(file string, args ...string) e
 }
 
 func validateCommand(command *Command) error {
-	if command.Command == "" {
+	if command.GetCommand() == "" {
 		return errors.New("command is required")
 	}
-	//TODO: validate command
-	if command.Templates == nil && command.Subcommands == nil {
+	for _, v := range command.GetTemplates() {
+		if v.GetTemplate() == "" {
+			return errors.New("template is required")
+		}
+		if v.GetOut() == "" {
+			return errors.New("out is required")
+		}
+	}
+	if command.GetTemplates() == nil && command.GetSubcommands() == nil {
 		return errors.New("template or subcommands is required")
 	}
 	return nil

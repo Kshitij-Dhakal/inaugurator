@@ -1,4 +1,4 @@
-package create
+package boilerplate
 
 import (
 	"encoding/json"
@@ -10,14 +10,14 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
-type BoilderplaterCreatorService interface {
+type BoilderplateCreatorService interface {
 	CreateBoilerplate(file string, command *CommandList) error
 }
 
-type BoilderplaterCreatorServiceImpl struct {
+type BoilerplateCreatorServiceImpl struct {
 }
 
-func (*BoilderplaterCreatorServiceImpl) CreateBoilerplate(file string, commands *CommandList) error {
+func (*BoilerplateCreatorServiceImpl) CreateBoilerplate(file string, commands *CommandList) error {
 	//read config file
 	//parse template path and read file in template path
 	//replace template with file data
@@ -66,13 +66,12 @@ func updateCommand(command *Command, i int32) error {
 	if i > 2 {
 		return errors.New("max number of subcommands reached")
 	}
-	//TODO: template validation
-	if command.GetTemplates() != nil {
-		// template, err := common.ReadFile(command.GetTemplate())
-		// if err != nil {
-		// 	return err
-		// }
-		// command.Template = template
+	for _, v := range command.GetTemplates() {
+		template, err := common.ReadFile(v.GetTemplate())
+		if err != nil {
+			return err
+		}
+		v.Template = template
 	}
 	if command.GetSubcommands() != nil {
 		for _, v := range command.GetSubcommands() {

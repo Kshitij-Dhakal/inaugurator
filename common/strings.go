@@ -40,11 +40,11 @@ func MakeFirstLetterUpperCase(str string) string {
 
 func ToDesiredCase(str string) (string, error) {
 	if str == "" {
-		return "", errors.New("String is empty")
+		return "", errors.New("string is empty")
 	}
-	r, _ := regexp.Compile("__[a-z]{2}__\\w+")
+	r, _ := regexp.Compile(`__[a-z]{2,3}__\w+`)
 	if !r.MatchString(str) {
-		return "", errors.New("Invalid string format. Proper string format : __[a-z]{2}__[a-zA-Z0-9]+")
+		return "", errors.New("invalid string format. Proper string format : __[a-z]{2}__[a-zA-Z0-9]+")
 	}
 	split := Split(str, '_')
 	dc := split[0]
@@ -63,8 +63,11 @@ func ToDesiredCase(str string) (string, error) {
 		} else if dc == "cc" { //camel case
 			result = append(result, MakeFirstLetterUpperCase(strings.ToLower(v)))
 			joinWith = ""
+		} else if dc == "lkc" {
+			result = append(result, strings.ToLower(v))
+			joinWith = "-"
 		} else {
-			return "", errors.New("Invalid desired case")
+			return "", errors.New("invalid desired case")
 		}
 	}
 	finalString := strings.Join(result, joinWith)

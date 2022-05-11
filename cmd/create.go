@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Kshitij-Dhakal/inaugurator/pkg/create"
+	"github.com/Kshitij-Dhakal/inaugurator/pkg/boilerplate"
 	"github.com/spf13/cobra"
 )
 
@@ -20,8 +20,8 @@ var createCmd = &cobra.Command{
 	
 	Example usage : inaugurator create server -f server.go`,
 	Run: func(cmd *cobra.Command, args []string) {
-		s := &create.BoilderplaterCreatorServiceImpl{}
-		f := &create.BoilerplateCreatorImpl{
+		s := &boilerplate.BoilerplateCreatorServiceImpl{}
+		f := &boilerplate.BoilerplateCreatorImpl{
 			Service: s,
 		}
 		err := f.CreateBoilerplate(file, args...)

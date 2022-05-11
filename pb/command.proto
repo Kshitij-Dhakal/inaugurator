@@ -1,7 +1,7 @@
 syntax = "proto3";
-package tutorial;
+package boilderplate;
 
-option go_package = "github.com/Kshitij-Dhakal/inaugurator/pkg/create";
+option go_package = "github.com/Kshitij-Dhakal/inaugurator/pkg/boilerplate";
 
 message Template {
     string out = 1;
